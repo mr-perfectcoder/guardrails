@@ -85,6 +85,55 @@ Includes:
 
 ---
 
+### [`code-review/`](./code-review)
+A **topic-first codebase review system** for every major AI coding agent. Drop the rules into your agent and get consistent, scored reviews across architecture, security, testing, DevOps, and more — without starting from a blank prompt every time.
+
+#### How each agent loads the rules
+
+| Agent | File to use | Where |
+|-------|-------------|--------|
+| **Antigravity** | [`GEMINI.md`](./code-review/GEMINI.md) | Place in project root — auto-detected |
+| **Cursor** | `.cursor/rules/*.mdc` | Auto-loaded via `alwaysApply` / glob globs |
+| **Claude Code / Cline** | [`AGENTS.md`](./code-review/AGENTS.md) | Project root — pick up automatically |
+| **Any chat agent** | [`Agent-Rules/PORTABLE-MASTER-PROMPT.md`](./code-review/Agent-Rules/PORTABLE-MASTER-PROMPT.md) | Paste as system / first message |
+
+#### What's inside
+
+```
+code-review/
+├── GEMINI.md                          # Antigravity (primary rules file)
+├── AGENTS.md                          # Claude Code / Cline / cross-tool pointer
+├── .cursor/rules/
+│   ├── code-review-workflow.mdc       # Full review flow: Phases A → B → C
+│   ├── engineering-quality-bar.mdc    # TDD, layering, vibe-coding anti-patterns
+│   └── jira-git-pr-hygiene.mdc        # Branch, commit, and PR standards
+└── Agent-Rules/
+    ├── PORTABLE-MASTER-PROMPT.md      # Paste into any chat agent — fully self-contained
+    ├── ANTIGRAVITY-INSTRUCTIONS.md    # Setup guide for Antigravity
+    └── README.md                      # Which file to use with which agent
+```
+
+#### Review phases
+
+The agent always follows a 3-phase flow:
+
+- **Phase A** — Static analysis (filesystem): maps the stack, then deep-dives on user-selected topics only.
+- **Phase B** — Browser checks (optional, URL required): forms, viewports, a11y.
+- **Phase C** — Git hygiene: branch names, commit style, PR readiness.
+
+#### Scoring rubric (1–4)
+
+| Score | Meaning |
+|-------|---------|
+| 4 | Strong — minor nits only |
+| 3 | Good — a few actionable gaps |
+| 2 | Risky / incomplete — needs planned work |
+| 1 | Critical — block release |
+
+→ **[View full code-review rules →](./code-review)**
+
+---
+
 ## 🤖 Adding Rules to Your Agent
 
 One file — `AGENT_RULES.md` — works with every agent below.

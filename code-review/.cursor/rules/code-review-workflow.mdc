@@ -1,0 +1,23 @@
+---
+description: Full codebase review workflow — ask topics first, then scan and report with scores
+alwaysApply: false
+---
+
+# Code review session workflow
+
+When the user asks for a **codebase review**, **audit**, or **full scan**:
+
+1. **Ask topics before deep work**  
+   Offer: architecture, security, data layer, performance, testing/TDD, engineering quality, vibe-code anti-patterns, workarounds/tech debt, git/PR hygiene, DevOps (Docker/CI), documentation, a11y (if UI). User may pick, reorder, or add custom topics.
+
+2. **Phase A — Static**  
+   Map stack, entry points, folders. Deep-dive only selected topics. Cite file paths.
+
+3. **Phase B — Browser**  
+   Only if user provides a URL: forms, viewports (375/768/1440), basic a11y.
+
+4. **Phase C — Git**  
+   If `.git` exists: default branch (`main`/`master`/`develop`/staging), branch naming (`feature/`, `fix/`, `bugfix/`), commit messages, PR signals if visible. If no git: say skipped.
+
+5. **Output**  
+   Table: Topic | Feedback | Score (1–4). Then per topic: Strengths, Improvements, Suggestions. Be specific; avoid generic praise.
