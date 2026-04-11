@@ -1,0 +1,42 @@
+{
+  "name": "create-guardrails",
+  "version": "1.0.1",
+  "description": "Security rules, architectural standards, and AI-agent constraints for Next.js App Router and React + Vite projects.",
+  "main": "bin/cli.js",
+  "bin": {
+    "create-guardrails": "bin/cli.js"
+  },
+  "keywords": [
+    "guardrails",
+    "create-guardrails",
+    "nextjs",
+    "react",
+    "vite",
+    "app-router",
+    "security",
+    "ai-agent",
+    "cursor",
+    "claude-code",
+    "antigravity",
+    "gemini",
+    "vibe-coding",
+    "best-practices",
+    "tdd",
+    "server-actions"
+  ],
+  "scripts": {
+    "preinstall": "node -e \"const path = require('path'); if (!process.env.NPX_PACKAGE_NAME && !process.env.npm_config_global && path.resolve(process.cwd()).includes('node_modules')) { console.error('\\n🛡️  GUARDRAILS ERROR: This creator tool cannot be added as a regular dependency.\\n\\nTo set up your project, run:\\n  npm create guardrails           (interactive)\\n  npm create guardrails nextjs    (Next.js App Router)\\n  npm create guardrails react     (React + Vite)\\n'); process.exit(1); }\"",
+    "test": "echo \"No tests — this is a CLI scaffolding tool\" && exit 0"
+  },
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "bin",
+    "templates"
+  ],
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.6"
+  }
+}

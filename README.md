@@ -1,8 +1,7 @@
-# 🛡️ guardrails
+# 🛡️ Guardrails
 
-**Security rules, architectural patterns, and AI-agent constraints for modern web applications.**  
+**Drop-in security rules, architectural standards, and AI-agent constraints for modern web applications.**  
 *Last Updated: 2026-04-11*
-
 
 <div align="center">
 
@@ -14,69 +13,130 @@
 
 ---
 
-## 👋 About Guardrails
+## 👋 What is Guardrails?
 
-**Guardrails** is a collection of drop-in security rules and architectural standards designed to fix the "Security Gap" in AI coding agents. 
+**Guardrails** is a collection of drop-in security rules and architectural standards designed to fix the **"Security Gap"** in AI coding agents.
 
-While tools like Cursor, Windsurf, and Claude can write code at light speed, they often skip critical production constraints like input validation, rate limiting, and secure environment handling. Guardrails forces these agents to move from "vibe-coding" to "engineering" by enforcing a strict, framework-agnostic security layer on every file they touch.
+Tools like Cursor, Windsurf, Copilot, and Gemini can write code at light speed — but they often skip critical production constraints like input validation, rate limiting, auth guards, and secure environment handling.
 
----
-
-## 🏗️ Available Patterns
-
-This repository containing production-ready implementations and rule-sets for different stacks:
-
-### 1. [React + Vite (Industrial-Grade)](./react-vite)
-A high-performance architecture optimized for large-scale enterprise applications.
-- **Goal:** Maintain code quality and testability at scale.
-- **Key Features:**
-    - **Strict TDD:** Mandated Vitest suite for every component.
-    - **Modular Structure:** 500-line soft limits and 700-line hard limits for components.
-    - **Asset Indexing:** Centralized named-export pattern for images and icons.
-    - **Zero-PII Storage:** Secure React Context patterns to keep user data out of `localStorage`.
-- → **[View React-Vite Pattern →](./react-vite/.agent/Overview.md)**
-
-### 2. [Next.js Secure API Pattern](./nextjs-secure-api-pattern)
-A server-first security model for Next.js App Router applications.
-- **Goal:** Close the 5 common security gaps in AI-generated Server Actions.
-- **Key Features:**
-    - **Secure Axios Instance:** Token injection on the server side (never client-sourced).
-    - **Action Guards:** Every Server Action requires `requireAuth()` and `requireRateLimit()`.
-    - **Schema Enforcement:** Shared Yup/Zod validation between forms and backend.
-- → **[View Next.js Implementation →](./nextjs-secure-api-pattern)**
-
-### 3. [Code Review System](./code-review)
-A scoring-based review system for Antigravity, Cursor, and Claude Code.
-- → **[View Review Guides →](./code-review)**
+Guardrails forces these agents to move from **"vibe-coding" to "engineering"** by injecting a strict, framework-specific security and architecture layer into your project that the AI agent reads and enforces on every file it touches.
 
 ---
 
-## 🤖 How to Use with AI Agents
+## 📦 Available Suites
 
-Activating Guardrails is as simple as pointing your agent to the project Overview.
-
-1. **Create an agent file** in your project root based on your tool:
-   - **Cursor:** `.cursor.md`
-   - **Claude Code:** `claude.md`
-   - **Antigravity:** `GEMINI.md`
-2. **Add this single line** to the file:
-   ```markdown
-   @[.agent/Overview.md]
-   ```
-3. **That's it!** Your agent will automatically index the entire documentation suite and follow all established security and architectural rules.
-
+Guardrails provides two production-ready suites. **Pick the one that matches your stack.**
 
 ---
 
-## ✅ Framework Support & Roadmap
-- [x] **Next.js App Router** (Secure Server-side patterns)
-- [x] **React + Vite** (High-Performance TDD Architecture)
-- [ ] Prisma + DB layer patterns
-- [ ] tRPC / GraphQL variants
-- [ ] Remix & SvelteKit variants
-- [ ] GitHub Action for automated security linting
+### 🟦 `nextjs-app-router` — Next.js 15 & 16 (App Router)
+
+> **Best for:** Teams building with Next.js using the App Router, Server Actions, and React Server Components.
+
+This is a **server-first** architecture. Pages are React Server Components by default. Interactivity is isolated to Client Components in a `components/` folder. Data mutations flow through a secure Server Action guard layer — never directly from the browser to the backend.
+
+**Key Features:**
+- ✅ **Server Actions with Guard Layer** — `requireAuth()` → `requireRateLimit()` → `schema.validate()` on every action
+- ✅ **RSC-First Pages** — All `page.tsx` files are Server Components. `"use client"` is isolated to `components/`
+- ✅ **Metadata & SEO** — Every page exports `metadata` or `generateMetadata()`. No raw `<head>` tags
+- ✅ **Data Access Layer (DAL)** — Centralized `lib/dal.ts` with `verifySession()` + `React.cache()`
+- ✅ **`next/image` + `next/font`** — Mandatory. No raw `<img>` or Google Fonts CDN links
+- ✅ **Caching Strategy** — `use cache` directive, `revalidateTag`, v15 `fetch()` breaking change documented
+- ✅ **Middleware (v15) / Proxy (v16)** — Edge-side auth and header injection
+- ✅ **TDD: Jest + SWC + Playwright** — Official Next.js testing stack (not Vitest)
+
+```bash
+npm create guardrails nextjs
+```
+
+→ **[Browse Next.js Docs →](./packages/create-guardrails/templates/nextjs/.agent/docs/)**
+
+---
+
+### ⚡ `react-vite` — React 19 + Vite (SPA)
+
+> **Best for:** Teams building a pure client-side Single Page Application with React and Vite.
+
+This is a **client-first** architecture. There is no server rendering. All data fetching is done through TanStack Query hooks calling a separate backend API via a secure Axios instance. State is managed with React Context and React Query — no Redux.
+
+**Key Features:**
+- ✅ **Secure Axios Layer** — One centralized instance with interceptors. Never `fetch()` inline
+- ✅ **TanStack Query** — All server state via `useQuery` / `useMutation` hooks in `hooks/api/`
+- ✅ **Protected Route Pattern** — `<PrivateRoute>` wrapper using React Router `<Outlet>`
+- ✅ **No `localStorage` for tokens** — Recommends `HttpOnly` cookies via backend. Flags `localStorage` as XSS-vulnerable
+- ✅ **Accessibility (a11y)** — WCAG 2.1 AA enforced: semantic HTML, ARIA, keyboard navigation
+- ✅ **Asset Indexing** — All images imported through `src/assets/index.ts` for Vite cache-busting
+- ✅ **TDD: Vitest + RTL + Playwright** — Full test coverage enforced per component
+- ✅ **`<Link>` over `<a>`** — React Router navigation enforced. No full-page reloads in SPA
+
+```bash
+npm create guardrails react
+```
+
+→ **[Browse React-Vite Docs →](./packages/create-guardrails/templates/react/.agent/docs/)**
+
+---
+
+## 🆚 Which Suite Should I Use?
+
+| | `nextjs-app-router` | `react-vite` |
+|---|---|---|
+| **Rendering** | Server-first (RSC + SSR) | Client-first (SPA) |
+| **Routing** | Next.js App Router (file-based) | React Router / TanStack Router |
+| **Data fetching** | Server Actions + DAL | TanStack Query → Backend API |
+| **Auth pattern** | Server-side `verifySession()` + DAL | Client-side `useAuth()` + `<PrivateRoute>` |
+| **API calls** | Server Actions (no direct client→API) | Axios instance from browser |
+| **Image handling** | `next/image` | `src/assets/` import pattern |
+| **Testing** | Jest + SWC + Playwright | Vitest + RTL + Playwright |
+| **Best for** | Content-heavy apps, SEO-critical, dashboards | SPAs, portals, internal tools |
+
+> **Not sure?** If you're using `next dev` → pick `nextjs-app-router`. If you're using `vite` → pick `react-vite`.
+
+---
+
+## 🤖 How to Activate with an AI Agent
+
+Once you run the CLI and the `.agent/` folder is in your project root, point your AI agent at it:
+
+**Gemini / Antigravity:**
+```
+Read @.agent/Overview.md before starting any task.
+```
+
+**Cursor (`.cursorrules`):**
+```
+@.agent/Overview.md
+```
+
+**Claude (`claude.md`):**
+```
+@.agent/Overview.md
+```
+
+The agent will discover all rules, security constraints, and architectural patterns automatically.
+
+---
+
+## 🗺️ Roadmap
+
+- [x] **Next.js App Router** suite (v15 & v16)
+- [x] **React + Vite** suite (React 19)
+- [x] Unified `npm create guardrails` CLI — **live on NPM**
+- [ ] Public GitHub launch + `CONTRIBUTING.md`
+- [ ] CI/CD: Auto-publish to NPM on merge
+- [ ] Remix suite
+- [ ] SvelteKit suite
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions from the community. Adding a new security rule, fixing a doc, or proposing an entirely new framework suite are all valid contributions.
+
+➡️ **See [`CONTRIBUTING.md`](CONTRIBUTING.md)** *(coming soon)*
 
 ---
 
 ## 📝 License
-MIT — Build fast, ship secure.
+
+MIT — Build fast. Ship secure.
