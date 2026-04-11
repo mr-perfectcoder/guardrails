@@ -1,9 +1,19 @@
 # 🛡️ create-guardrails
 
-**Drop-in security rules, architectural standards, and AI-agent constraints for Next.js and React + Vite projects.**
+> **Core Principle**: You are the Architect, the AI is the Builder. Guardrails is the Building Code.
+
+**Stop "Vibe Coding" and start engineering. Drop-in security rules, architectural standards, and AI-agent constraints for Next.js and React + Vite projects.**
 
 [![NPM Version](https://img.shields.io/npm/v/create-guardrails?color=blue)](https://www.npmjs.com/package/create-guardrails)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../../LICENSE)
+
+---
+
+## 🏗️ Converting "Vibe Coding" into Engineering
+
+AI agents (Cursor, Claude, Gemini) are incredible at "Vibe Coding" — generating functional code at lightning speed. However, they naturally drift toward technical debt and inconsistent patterns if left unsupervised.
+
+**Guardrails** ensures that the AI doesn't cut corners on the foundation. It provides a hard-coded set of architectural and security constraints that keep the AI aligned with your engineering vision, converting it from a fast-but-loose coder into a disciplined builder.
 
 ---
 
