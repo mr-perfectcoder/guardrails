@@ -13,11 +13,13 @@ The agent reads the docs → understands the rules → enforces them on every fi
 ```
 your-project/
 ├── .agent/
-│   ├── Overview.md        ← First file the agent reads. Links to all docs.
-│   └── docs/
-│       ├── SecurityAndAPI.md
-│       ├── TestingStrategy.md
-│       └── ... (20+ rule documents)
+│   ├── Overview.md        ← First file the agent reads. Links to all skills.
+│   └── skills/
+│       ├── SecurityAndAPI/
+│       │   └── SKILL.md
+│       ├── TestingStrategy/
+│       │   └── SKILL.md
+│       └── ... (20+ skill-specific folders)
 └── GEMINI.md              ← Tells the agent to read @.agent/Overview.md
 ```
 
@@ -50,7 +52,7 @@ guardrails/
 
 **All edits to documentation MUST be made in:**
 ```
-packages/create-guardrails/templates/[nextjs|react]/.agent/docs/
+packages/create-guardrails/templates/[nextjs|react]/.agent/skills/
 ```
 
 The top-level `nextjs-app-router/templates/.agent/` folder is a **symlink** — not a real directory. Editing through it works, but contributors should always be aware they are editing the canonical source.
@@ -64,23 +66,32 @@ Every `.agent/` folder has an identical structure:
 ### `Overview.md` — The Entry Point
 - Tech stack definition
 - Core principles (numbered, enforced)
-- Links to all docs in `docs/`
+- Links to all skills in `skills/`
 - **Optional Modules** table (disabled-by-default docs)
 - **Agent Behavioral Protocol** (the consent-first, no-override rules)
 
-### `docs/[Topic].md` — Rule Documents
-Each doc has a consistent shape:
-1. **Section headers** with emoji for scanability
-2. **✅ DO** examples with code blocks
-3. **❌ DON'T** examples with code blocks
-4. **🤖 Interaction Protocol** — explicit instructions to the AI agent at the bottom
+### `skills/[Topic]/SKILL.md` — Rule Documents
+
+Every skill follows a **Standard Folder Structure**. While `SKILL.md` is the only required file, you can include additional resources to help the agent:
+
+```text
+.agent/skills/my-skill/
+├── SKILL.md       # Main instructions (required)
+├── scripts/       # Helper scripts (optional)
+├── examples/      # Reference implementations (optional)
+└── resources/     # Templates and other assets (optional)
+```
+
+The agent can read these files when following your skill's instructions.
+
+#### How the Agent Uses Skills
+Skills follow a **Progressive Disclosure** pattern to keep the context window clean:
+
+1.  **Discovery:** When a conversation starts, the agent sees a list of available skills with their names and descriptions (extracted from the YAML).
+2.  **Activation:** If a skill looks relevant to the current task, the agent reads the full `SKILL.md` content.
+3.  **Execution:** The agent follows the skill's specific instructions, examples, and scripts while working.
 
 ### Optional Modules
-Some docs are **disabled by default** and MUST NOT be applied unless the user explicitly requests them:
-- `OGImageGeneration.md` — dynamic OG images
-- `PrismaPatterns.md` — database/ORM integration
-- `TurbopackConfig.md` — build tooling
-
 These are listed in the `Overview.md` Optional Modules table with a clear warning.
 
 ---

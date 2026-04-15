@@ -49,10 +49,61 @@ const AGENTS = [
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function parseArgs() {
-  const raw = process.argv.slice(2).map(a => a.toLowerCase().replace(/^--/, ''));
-  const framework = raw.find(a => ['nextjs', 'next', 'react', 'vite'].includes(a)) ?? null;
-  const agent     = raw.find(a => ['cursor', 'claude', 'gemini', 'antigravity', 'other'].includes(a)) ?? null;
-  return { framework, agent };
+  const raw = process.argv.slice(2);
+  const framework = raw.find(a => ['nextjs', 'next', 'react', 'vite'].includes(a.replace(/^--/, '').toLowerCase())) ?? null;
+  const agent     = raw.find(a => ['cursor', 'claude', 'gemini', 'antigravity', 'other'].includes(a.replace(/^--/, '').toLowerCase())) ?? null;
+  const addSkill  = raw.find((a, i) => (a === '--add-skill' || a === '-s') && raw[i+1]) ? raw[raw.indexOf('--add-skill') !== -1 ? raw.indexOf('--add-skill')+1 : raw.indexOf('-s')+1] : null;
+  return { framework: framework?.replace(/^--/, '').toLowerCase(), agent: agent?.replace(/^--/, '').toLowerCase(), addSkill };
+}
+
+async function createSkill(skillName) {
+  const targetDir = process.cwd();
+  const agentDir  = path.join(targetDir, '.agent');
+  const skillsDir = path.join(agentDir, 'skills');
+
+  if (!fs.existsSync(agentDir)) {
+    console.error(chalk.red('\n❌ Error: .agent/ directory not found.'));
+    console.error(chalk.gray('   Please run `npm create guardrails` first to initialize the suite.\n'));
+    process.exit(1);
+  }
+
+  const skillPath = path.join(skillsDir, skillName);
+  const skillFile = path.join(skillPath, 'SKILL.md');
+
+  if (fs.existsSync(skillPath)) {
+    console.error(chalk.red(`\n❌ Error: Skill "${skillName}" already exists at .agent/skills/${skillName}`));
+    process.exit(1);
+  }
+
+  const content = `---
+name: ${skillName.toLowerCase()}
+description: Guidelines and rules for ${skillName}.
+---
+
+# ${skillName}
+
+## 🎯 Purpose
+Describe the main objective of this skill.
+
+## ✅ DO
+- Preach best practices
+- Use code examples
+
+## ❌ DON'T
+- List anti-patterns
+
+## 🤖 Interaction Protocol
+Instructions for the AI agent on how to apply this skill.
+`;
+
+  await fs.ensureDir(skillPath);
+  await fs.writeFile(skillFile, content);
+
+  console.log(chalk.green(`\n✅ Skill "${chalk.bold(skillName)}" created successfully!`));
+  console.log(chalk.gray(`   Path: .agent/skills/${skillName}/SKILL.md\n`));
+  console.log(chalk.white('   Next steps:'));
+  console.log(chalk.cyan(`   1. Edit the content in .agent/skills/${skillName}/SKILL.md`));
+  console.log(chalk.cyan(`   2. Add a reference in .agent/Overview.md if needed.\n`));
 }
 
 function resolveFramework(arg) {
@@ -75,6 +126,12 @@ function resolveAgent(arg) {
 async function init() {
   const targetDir = process.cwd();
   const args      = parseArgs();
+  
+  // Handle --add-skill flag
+  if (args.addSkill) {
+    await createSkill(args.addSkill);
+    return;
+  }
 
   console.log(chalk.blue.bold('\n🛡️  Guardrails — AI-Agent Architecture & Security Suite\n'));
   console.log(chalk.gray('  Enforces production-grade standards on every file your AI agent touches.\n'));

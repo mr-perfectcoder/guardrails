@@ -49,7 +49,7 @@ This is a **server-first** architecture. Pages are React Server Components by de
 npm create guardrails nextjs
 ```
 
-→ **[Browse Next.js Docs →](./packages/create-guardrails/templates/nextjs/.agent/docs/)**
+→ **[Browse Next.js Docs →](./packages/create-guardrails/templates/nextjs/.agent/skills/)**
 
 ---
 
@@ -73,7 +73,7 @@ This is a **client-first** architecture. There is no server rendering. All data 
 npm create guardrails react
 ```
 
-→ **[Browse React-Vite Docs →](./packages/create-guardrails/templates/react/.agent/docs/)**
+→ **[Browse React-Vite Docs →](./packages/create-guardrails/templates/react/.agent/skills/)**
 
 ---
 
@@ -114,6 +114,14 @@ Read @.agent/Overview.md before starting any task.
 ```
 
 The agent will discover all rules, security constraints, and architectural patterns automatically.
+
+### 🛠️ Extending Guardrails (Custom Skills)
+You can easily add your own project-specific rules while maintaining the Guardrails standard. Use the built-in skill generator:
+
+```bash
+npx create-guardrails --add-skill MyProjectRule
+```
+This automatically creates a directory at `.agent/skills/MyProjectRule/SKILL.md` with the required YAML frontmatter.
 
 ---
 

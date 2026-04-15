@@ -55,12 +55,14 @@ Running the command injects a `.agent/` folder into your project root containing
 your-project/
 ├── .agent/
 │   ├── Overview.md         ← Tech stack, core principles, agent protocol
-│   └── docs/
-│       ├── SecurityAndAPI.md
-│       ├── TestingStrategy.md
-│       ├── ProjectStructure.md
-│       ├── DosAndDonts.md
-│       └── ... (20+ more docs)
+│   └── skills/
+│       ├── SecurityAndAPI/
+│       │   └── SKILL.md
+│       ├── TestingStrategy/
+│       │   └── SKILL.md
+│       ├── ProjectStructure/
+│       │   └── SKILL.md
+│       └── ... (20+ skill folders)
 └── GEMINI.md (or .cursor.md / claude.md)  ← Agent activation file
 ```
 
@@ -120,12 +122,24 @@ The agent discovers all security rules, architectural patterns, and enforcement 
 
 ---
 
+## 🛠️ Extending Your Suite (Add Rules)
+
+You can add project-specific rules while maintaining the generic standards. Use the integrated skill generator:
+
+```bash
+npx create-guardrails --add-skill MyProjectRule
+```
+
+This creates a directory at `.agent/skills/MyProjectRule/SKILL.md` with the required boilerplate and YAML frontmatter.
+
+---
+
 ## 🔗 Links
 
 - [GitHub Repository](https://github.com/mr-perfectcoder/guardrails)
 - [NPM Package](https://www.npmjs.com/package/create-guardrails)
-- [Browse Next.js Docs](https://github.com/mr-perfectcoder/guardrails/tree/main/packages/create-guardrails/templates/nextjs/.agent/docs)
-- [Browse React Docs](https://github.com/mr-perfectcoder/guardrails/tree/main/packages/create-guardrails/templates/react/.agent/docs)
+- [Browse Next.js Docs](https://github.com/mr-perfectcoder/guardrails/tree/main/packages/create-guardrails/templates/nextjs/.agent/skills)
+- [Browse React Docs](https://github.com/mr-perfectcoder/guardrails/tree/main/packages/create-guardrails/templates/react/.agent/skills)
 
 ---
 

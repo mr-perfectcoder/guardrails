@@ -1,3 +1,8 @@
+---
+name: project-standards
+description: The primary entry point for project architecture, coding standards, and development rules.
+---
+
 # Project Overview: Next.js Industrial Architecture (App Router)
 *Last Updated: 2026-04-11*
 
@@ -23,14 +28,22 @@ This project is a high-performance, server-first application built with **Next.j
 
 ## 📚 Documentation Reference
 
-- **Architecture & Folders**: [docs/ProjectStructure.md](docs/ProjectStructure.md)
-- **Security & API Rules**: [docs/SecurityAndAPI.md](docs/SecurityAndAPI.md)
-- **Middleware & Proxy**: [docs/MiddlewareAndProxy.md](docs/MiddlewareAndProxy.md)
-- **Coding Standards**: [docs/CodingStandards.md](docs/CodingStandards.md)
-- **Metadata & SEO**: [docs/MetadataAndSEO.md](docs/MetadataAndSEO.md)
-- **Caching Strategy**: [docs/CachingStrategy.md](docs/CachingStrategy.md)
-- **Testing Strategy**: [docs/TestingStrategy.md](docs/TestingStrategy.md) (Jest + Playwright — no Vitest)
-- **Setup Checklist**: [docs/ProjectChecklist.md](docs/ProjectChecklist.md)
+- **Architecture & Folders**: [skills/ProjectStructure](skills/ProjectStructure/SKILL.md)
+- **Security & API Rules**: [skills/SecurityAndAPI](skills/SecurityAndAPI/SKILL.md)
+- **Middleware & Proxy**: [skills/MiddlewareAndProxy](skills/MiddlewareAndProxy/SKILL.md)
+- **Coding Standards**: [skills/CodingStandards](skills/CodingStandards/SKILL.md)
+- **Metadata & SEO**: [skills/MetadataAndSEO](skills/MetadataAndSEO/SKILL.md)
+- **Caching Strategy**: [skills/CachingStrategy](skills/CachingStrategy/SKILL.md)
+- **Testing Strategy**: [skills/TestingStrategy](skills/TestingStrategy/SKILL.md) (Jest + Playwright — no Vitest)
+- **Setup Checklist**: [skills/ProjectChecklist](skills/ProjectChecklist/SKILL.md)
+---
+
+## 🤖 How to Use These Skills
+This suite follows a **Progressive Disclosure** pattern. To optimize your performance and context:
+
+1.  **Discovery:** On session start, you have the list of skills above.
+2.  **Activation:** When a task involves a specific topic (e.g., "API calls" or "SEO"), you MUST explicitly **read the corresponding `SKILL.md` file** in the `skills/` folder to activate the relevant guardrails.
+3.  **Exploration:** Check if the skill folder contains a `scripts/`, `examples/`, or `resources/` folder for deeper implementation details.
 
 ---
 
@@ -40,9 +53,18 @@ These documents exist but are **NOT activated unless the USER explicitly request
 
 | Module | Document | Activate When |
 |---|---|---|
-| OG Image Generation | [docs/OGImageGeneration.md](docs/OGImageGeneration.md) | User asks for social sharing / OG images |
-| Prisma DB Patterns | [docs/PrismaPatterns.md](docs/PrismaPatterns.md) | User asks for database / ORM integration |
-| Turbopack Config | [docs/TurbopackConfig.md](docs/TurbopackConfig.md) | User asks to optimize dev server or build tooling |
+| OG Image Generation | [skills/OGImageGeneration](skills/OGImageGeneration/SKILL.md) | User asks for social sharing / OG images |
+| Prisma DB Patterns | [skills/PrismaPatterns](skills/PrismaPatterns/SKILL.md) | User asks for database / ORM integration |
+| Turbopack Config | [skills/TurbopackConfig](skills/TurbopackConfig/SKILL.md) | User asks to optimize dev server or build tooling |
+
+---
+
+## 🤖 How to Use These Skills
+This suite follows a **Progressive Disclosure** pattern. To optimize your performance and context:
+
+1.  **Discovery:** On session start, you have the list of skills above.
+2.  **Activation:** When a task involves a specific topic (e.g., "API calls" or "SEO"), you MUST explicitly **read the corresponding `SKILL.md` file** in the `skills/` folder to activate the relevant guardrails.
+3.  **Exploration:** Check if the skill folder contains a `scripts/`, `examples/`, or `resources/` folder for deeper implementation details.
 
 ---
 
@@ -66,3 +88,5 @@ These documents exist but are **NOT activated unless the USER explicitly request
 6.  **Evolution:** If the USER confirms a new pattern should become a standard, the Agent MUST ask: *"Should I codify this into the project docs?"* before updating any document.
 
 7.  **Transparency:** If the Agent is unsure whether an action violates a rule, it MUST ask the USER for clarification **before** taking any action — never silently guess or proceed.
+
+8.  **Documentation Standard:** Every skill/rule MUST be stored in its own directory under `skills/` as a `SKILL.md` file with proper YAML frontmatter (`name` and `description`) at the top.

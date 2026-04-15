@@ -26,8 +26,8 @@ cd guardrails
 All docs live in **one place** — the single source of truth:
 ```
 packages/create-guardrails/templates/
-├── nextjs/.agent/docs/    ← Next.js App Router docs
-└── react/.agent/docs/     ← React + Vite docs
+├── nextjs/.agent/skills/   ← Next.js App Router skills
+└── react/.agent/skills/    ← React + Vite skills
 ```
 
 > ⚠️ **Important**: `nextjs-app-router/templates/.agent/` is a symlink. You can edit through it, but the canonical path is always `packages/create-guardrails/templates/nextjs/.agent/`.
@@ -71,7 +71,7 @@ cp -r packages/create-guardrails/templates/react packages/create-guardrails/temp
 ```
 
 ### 2. Rewrite the docs
-Go through every `.md` file in `templates/svelte/.agent/docs/` and adapt it to the new framework. At minimum, update:
+Go through every folder and `SKILL.md` file in `templates/svelte/.agent/skills/` and adapt it to the new framework.
 - `Overview.md` — Tech stack, core principles
 - `ProjectStructure.md` — Folder layout for the new framework
 - `SecurityAndAPI.md` — Framework-specific security model

@@ -1,3 +1,8 @@
+---
+name: project-standards
+description: The primary entry point for project architecture, coding standards, and development rules.
+---
+
 # Project Overview: React-Vite Modern Architecture
 *Last Updated: 2026-04-11*
 
@@ -34,34 +39,43 @@ This project is a high-performance, scalable web application built with **React 
 
 ## 📚 Documentation Reference
 
-- **Architecture & folders**: [docs/ProjectStructure.md](docs/ProjectStructure.md)
-- **Component Rules**: [docs/ComponentBestPractices.md](docs/ComponentBestPractices.md)
-- **Standards & React 19**: [docs/CodingStandards.md](docs/CodingStandards.md)
+- **Architecture & folders**: [skills/ProjectStructure](skills/ProjectStructure/SKILL.md)
+- **Component Rules**: [skills/ComponentBestPractices](skills/ComponentBestPractices/SKILL.md)
+- **Standards & React 19**: [skills/CodingStandards](skills/CodingStandards/SKILL.md)
 
-- **Data & API Layer**: [docs/APIAndData.md](docs/APIAndData.md)
-- **Security & State**: [docs/StateManagementAndSecurity.md](docs/StateManagementAndSecurity.md)
-- **Tailwind Style Guide**: [docs/TailwindStyleGuide.md](docs/TailwindStyleGuide.md)
-- **Asset Management**: [docs/AssetManagement.md](docs/AssetManagement.md)
-- **Z-Index Layering**: [docs/ZIndexManagement.md](docs/ZIndexManagement.md)
-- **Form Management**: [docs/FormHandling.md](docs/FormHandling.md)
+- **Data & API Layer**: [skills/APIAndData](skills/APIAndData/SKILL.md)
+- **Security & State**: [skills/StateManagementAndSecurity](skills/StateManagementAndSecurity/SKILL.md)
+- **Tailwind Style Guide**: [skills/TailwindStyleGuide](skills/TailwindStyleGuide/SKILL.md)
+- **Asset Management**: [skills/AssetManagement](skills/AssetManagement/SKILL.md)
+- **Z-Index Layering**: [skills/ZIndexManagement](skills/ZIndexManagement/SKILL.md)
+- **Form Management**: [skills/FormHandling](skills/FormHandling/SKILL.md)
 
-- **Performance & Code Splitting**: [docs/CodeSplittingStrategy.md](docs/CodeSplittingStrategy.md)
-- **React Optimization**: [docs/PerformanceOptimization.md](docs/PerformanceOptimization.md)
-- **Skeleton & Loading UI**: [docs/SkeletonAndLoading.md](docs/SkeletonAndLoading.md)
+- **Performance & Code Splitting**: [skills/CodeSplittingStrategy](skills/CodeSplittingStrategy/SKILL.md)
+- **React Optimization**: [skills/PerformanceOptimization](skills/PerformanceOptimization/SKILL.md)
+- **Skeleton & Loading UI**: [skills/SkeletonAndLoading](skills/SkeletonAndLoading/SKILL.md)
 
-- **Testing & TDD**: [docs/TestingStrategy.md](docs/TestingStrategy.md)
-- **Error Handling**: [docs/ErrorHandling.md](docs/ErrorHandling.md)
-- **Toast & Feedback**: [docs/ToastAndFeedback.md](docs/ToastAndFeedback.md)
+- **Testing & TDD**: [skills/TestingStrategy](skills/TestingStrategy/SKILL.md)
+- **Error Handling**: [skills/ErrorHandling](skills/ErrorHandling/SKILL.md)
+- **Toast & Feedback**: [skills/ToastAndFeedback](skills/ToastAndFeedback/SKILL.md)
 
-- **Git & Workflow**: [docs/GitAndWorkflow.md](docs/GitAndWorkflow.md)
-- **Linting & Formatting**: [docs/LintingAndFormatting.md](docs/LintingAndFormatting.md)
-- **Maintenance & Audit**: [docs/MaintenanceAndAudit.md](docs/MaintenanceAndAudit.md)
-- **Setup Checklist**: [docs/ProjectChecklist.md](docs/ProjectChecklist.md)
+- **Git & Workflow**: [skills/GitAndWorkflow](skills/GitAndWorkflow/SKILL.md)
+- **Linting & Formatting**: [skills/LintingAndFormatting](skills/LintingAndFormatting/SKILL.md)
+- **Maintenance & Audit**: [skills/MaintenanceAndAudit](skills/MaintenanceAndAudit/SKILL.md)
+- **Setup Checklist**: [skills/ProjectChecklist](skills/ProjectChecklist/SKILL.md)
 
-- **Development Workflow**: [docs/Development.md](docs/Development.md)
-- **Hooks & Side Effects**: [docs/HooksBestPractices.md](docs/HooksBestPractices.md)
-- **Best Practices**: [docs/DosAndDonts.md](docs/DosAndDonts.md) (**Recommended Reading**)
-- **Accessibility (a11y)**: [docs/AccessibilityGuide.md](docs/AccessibilityGuide.md)
+- **Development Workflow**: [skills/Development](skills/Development/SKILL.md)
+- **Hooks & Side Effects**: [skills/HooksBestPractices](skills/HooksBestPractices/SKILL.md)
+- **Best Practices**: [skills/DosAndDonts](skills/DosAndDonts/SKILL.md) (**Recommended Reading**)
+- **Accessibility (a11y)**: [skills/AccessibilityGuide](skills/AccessibilityGuide/SKILL.md)
+
+---
+
+## 🤖 How to Use These Skills
+This suite follows a **Progressive Disclosure** pattern. To optimize your performance and context:
+
+1.  **Discovery:** On session start, you have the list of skills above.
+2.  **Activation:** When a task involves a specific topic (e.g., "State Management" or "Testing"), you MUST explicitly **read the corresponding `SKILL.md` file** in the `skills/` folder to activate the relevant guardrails.
+3.  **Exploration:** Check if the skill folder contains a `scripts/`, `examples/`, or `resources/` folder for deeper implementation details.
 
 ---
 
@@ -85,4 +99,6 @@ This project is a high-performance, scalable web application built with **React 
 6.  **Evolution:** If the USER confirms a new pattern should become a standard, the Agent MUST ask: *"Should I codify this into the project docs?"* before updating any document.
 
 7.  **Transparency:** If the Agent is unsure whether an action violates a rule, it MUST ask the USER for clarification **before** taking any action — never silently guess or proceed.
+
+8.  **Documentation Standard:** Every skill/rule MUST be stored in its own directory under `skills/` as a `SKILL.md` file with proper YAML frontmatter (`name` and `description`) at the top.
 
