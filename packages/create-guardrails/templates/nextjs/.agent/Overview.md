@@ -36,6 +36,7 @@ This project is a high-performance, server-first application built with **Next.j
 - **Caching Strategy**: [skills/CachingStrategy](skills/CachingStrategy/SKILL.md)
 - **Testing Strategy**: [skills/TestingStrategy](skills/TestingStrategy/SKILL.md) (Jest + Playwright — no Vitest)
 - **Setup Checklist**: [skills/ProjectChecklist](skills/ProjectChecklist/SKILL.md)
+- **Spec Status**: [spec/SpecStatus](spec/SpecStatus.md) (Track implementation vs. contracts)
 ---
 
 ## 🤖 How to Use These Skills

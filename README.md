@@ -43,6 +43,7 @@ This is a **server-first** architecture. Pages are React Server Components by de
 - ✅ **`next/image` + `next/font`** — Mandatory. No raw `<img>` or Google Fonts CDN links
 - ✅ **Caching Strategy** — `use cache` directive, `revalidateTag`, v15 `fetch()` breaking change documented
 - ✅ **Middleware (v15) / Proxy (v16)** — Edge-side auth and header injection
+- ✅ **Spec-Driven Development** — Track implementation vs. FRS/SRS via `spec/`
 - ✅ **TDD: Jest + SWC + Playwright** — Official Next.js testing stack (not Vitest)
 
 ```bash
@@ -67,6 +68,7 @@ This is a **client-first** architecture. There is no server rendering. All data 
 - ✅ **Accessibility (a11y)** — WCAG 2.1 AA enforced: semantic HTML, ARIA, keyboard navigation
 - ✅ **Asset Indexing** — All images imported through `src/assets/index.ts` for Vite cache-busting
 - ✅ **TDD: Vitest + RTL + Playwright** — Full test coverage enforced per component
+- ✅ **Spec-Driven Development** — Track implementation vs. FRS/SRS via `spec/`
 - ✅ **`<Link>` over `<a>`** — React Router navigation enforced. No full-page reloads in SPA
 
 ```bash

@@ -62,6 +62,7 @@ This project is a high-performance, scalable web application built with **React 
 - **Linting & Formatting**: [skills/LintingAndFormatting](skills/LintingAndFormatting/SKILL.md)
 - **Maintenance & Audit**: [skills/MaintenanceAndAudit](skills/MaintenanceAndAudit/SKILL.md)
 - **Setup Checklist**: [skills/ProjectChecklist](skills/ProjectChecklist/SKILL.md)
+- **Spec Status**: [spec/SpecStatus](spec/SpecStatus.md) (Track implementation vs. contracts)
 
 - **Development Workflow**: [skills/Development](skills/Development/SKILL.md)
 - **Hooks & Side Effects**: [skills/HooksBestPractices](skills/HooksBestPractices/SKILL.md)

@@ -63,6 +63,8 @@ your-project/
 │       ├── ProjectStructure/
 │       │   └── SKILL.md
 │       └── ... (20+ skill folders)
+│   └── spec/
+│       └── SpecStatus.md    ← Track implementation vs. FRS/SRS contracts
 └── GEMINI.md (or .cursor.md / claude.md)  ← Agent activation file
 ```
 
@@ -81,6 +83,7 @@ For teams using **Next.js 15 or 16** with the App Router, Server Actions, and Re
 - ✅ Caching strategy — `use cache` directive, `revalidateTag`, v15 breaking change documented
 - ✅ Middleware (v15) / Proxy (v16) gateway
 - ✅ TDD: Jest + SWC + Playwright
+- ✅ Spec-Driven: FRS/SRS compliance tracking via `spec/`
 
 ---
 
@@ -96,6 +99,7 @@ For teams building a **React 19 SPA** with Vite and a separate backend API.
 - ✅ Accessibility (a11y) — WCAG 2.1 AA: semantic HTML, ARIA, keyboard navigation
 - ✅ Asset indexing — all images through `src/assets/` for Vite cache-busting
 - ✅ TDD: Vitest + React Testing Library + Playwright
+- ✅ Spec-Driven: FRS/SRS compliance tracking via `spec/`
 
 ---
 

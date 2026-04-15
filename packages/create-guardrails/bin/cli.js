@@ -196,7 +196,7 @@ async function init() {
     // ── Step 4: Create agent activation file ──────────────────────────────
 
     const agentFilePath      = path.join(targetDir, agentFile);
-    const activationContent  = `# Guardrails — ${template.label}\n# This file activates the Guardrails security and architecture suite.\n@[.agent/Overview.md]\n`;
+    const activationContent  = `@[.agent/Overview.md]\n`;
 
     if (fs.existsSync(agentFilePath)) {
       console.log(chalk.yellow(`  ⚠  ${agentFile} already exists — skipping.`));
